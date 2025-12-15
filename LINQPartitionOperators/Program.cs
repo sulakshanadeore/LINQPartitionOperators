@@ -98,6 +98,32 @@ internal class Program
 
         //ConversionOperatorsDemo();
 
+        //ElementOperatorsDemo();
+
+
+
+        List<Vehicle> vehicles = new List<Vehicle>() {
+        
+        new Car{Name="BMW", Mileage=4 },
+        new Bike{Name="KTM",Mileage=40 },
+        new Car{Name="Punto", Mileage=10 },
+        new Bike{Name="ABC",Mileage=45 },
+        new Auto{Name="BAjaj",Mileage=30}
+           };
+
+        var cars=vehicles.OfType<Car>();
+        foreach (var item in cars)
+        {
+            Console.WriteLine(item.Name +  "|" + item.Mileage);
+        }
+
+
+
+
+    }
+
+    private static void ElementOperatorsDemo()
+    {
         List<Student> studentList = new List<Student>
         {
             new Student {RollNo=1,Name="Jack" ,Marks=76,City="Pune"} ,
@@ -106,12 +132,20 @@ internal class Program
             new Student {RollNo=5,Name="Sam" ,Marks=69,City="Kochi" } ,
             new Student {RollNo=6,Name="Parikshit" ,Marks=69,City="Kochi" } ,
             new Student {RollNo=7,Name="Raj" ,Marks=45,City="Kochi" } ,
+           
         };
 
-      //  var emptylist=new List<Student>();
-        var result = studentList.DefaultIfEmpty(new Student {Name="No Data" });
+        var emptylist = new List<Student>();
+        var result = emptylist.DefaultIfEmpty(new Student { Name = "No Data" });
 
-        var data=studentList.FirstOrDefault(s=>s.RollNo==10);
+        foreach (var item in result)
+        {
+            Console.WriteLine(item.Name);
+
+        }
+
+        Console.WriteLine("--------");
+        var data = studentList.FirstOrDefault(s => s.RollNo == 10);
 
         if (data != null)
         {
@@ -119,13 +153,14 @@ internal class Program
         }
         else
         {
-            foreach (var item in result)
-            {
-                Console.WriteLine(item.Name);
-
-            }
-
+            Console.WriteLine("Not found");
         }
+        
+        
+        
+        
+
+        
 
 
 
@@ -155,28 +190,6 @@ internal class Program
 
         // stud = studentList.Single(r => r.RollNo == 1);
         //Console.WriteLine(stud.Name);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
     private static void ConversionOperatorsDemo()
