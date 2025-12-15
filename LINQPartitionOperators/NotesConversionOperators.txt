@@ -1,0 +1,17 @@
+﻿conversion operators:
+They are used to convert the result of the query into a different data structure or type(ToArray,ToList,ToDictionary etc) 
+or to force execution of query.
+Conversion operations either convert to IEnumerable or IQueryable.
+
+Immediate Execution/Early loading
+ToList()-- 
+ToArray: Faster than ToList()
+ToDictionary(TKey,TVAlue)---key is unique, if not exception fired
+ToLookup<TKey,TValue)---Allows duplicate keys, read only, similar to groupby, immediate exection
+
+
+Deferred Exection/Lazy Loading
+Cast
+OfType<T>
+AsEnumerable
+AsQueryable
