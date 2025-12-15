@@ -1,4 +1,5 @@
 ﻿using LINQPartitionOperators;
+using System.Collections;
 
 internal class Program
 {
@@ -126,15 +127,15 @@ internal class Program
             new Student {RollNo=2, Name="Mike" ,Marks=97,City= "Pune"} ,
             new Student { RollNo=3,Name="Jim" ,Marks=55, City = "Mumbai"} ,
             new Student {RollNo=4,Name="Sam" ,Marks=69,City="Kochi" } ,
-            new Student {RollNo=5,Name="Raj" ,Marks=45,City="Kochi" } ,
+             new Student {RollNo=5,Name="Raj" ,Marks=45,City="Kochi" } ,
         };
 
         var dict = studentList.ToDictionary(s=>s.RollNo,s=>s.Name);
         Console.WriteLine("Dictionary print");
-        foreach (var item in dict)
+        foreach (var s in dict)
         {
-            Console.WriteLine(item.Key);
-            Console.WriteLine(item.Value);
+            Console.WriteLine(s.Key);
+            Console.WriteLine(s.Value);
         }
 
         Console.WriteLine("Print only Kochi students");
@@ -145,7 +146,34 @@ internal class Program
             Console.WriteLine(item.Name);
         }
 
+        //studentsArray is a array--Student[]
+        Student[] studentsArray = new Student[]
+        {
+            new Student {Name="Jack" ,Marks=76,City="Pune"} ,
+            new Student { Name="Mike" ,Marks=97,City= "Pune"} ,
+            new Student { Name="Jim" ,Marks=55, City = "Mumbai"} ,
+            new Student {Name="Sam" ,Marks=69,City="Kochi" } ,
+            new Student {Name="Raj" ,Marks=45,City="Kochi" } ,
+        };
+        ArrayList studData = new ArrayList();
+        studData=(ArrayList)studentsArray.Cast<Student>();
+        studData.Add(1);//It can takes incompatible types
+                        //Not safe, so use OfType
 
+        var studs=studData.OfType<Student>(); 
+
+        List<Student> studentsData=studs.ToList();
+        studentsData.Add(new Student { RollNo = 7, Name = "ABC" });
+        //Safer than Cast, Skips the Incompatible types
+
+        //Here we don't have datbase data so using studentlist, otherwise
+        //it will db.studentList.AsEnumerable().Where(e => e.RollNo == 1);
+
+        var resultdata = studentList.AsEnumerable().Where(e => e.RollNo == 1);
+
+
+
+        var resultdata2 = resultdata.AsQueryable();
 
 
 

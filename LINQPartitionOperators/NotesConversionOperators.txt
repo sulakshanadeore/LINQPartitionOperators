@@ -11,7 +11,35 @@ ToLookup<TKey,TValue)---Allows duplicate keys, read only, similar to groupby, im
 
 
 Deferred Exection/Lazy Loading
-Cast
+Cast: Though we cast the data to the arraylist of the student array,
+we can add any type of dat a to arraylist in which student data exists, so it can now hold any type of data as its a arraylist, so it is not safe,
+if we want safety we use OfType<T>.
 OfType<T>
-AsEnumerable
-AsQueryable
+---------------------
+AsEnumerable: converts it to IEnumerable
+IEnumerable<T> represents a collection of data that can be iterated in the memory. Simply understand it as : IEnumerable works on the data already loaded in the memory of the app.
+All LINQ queries are executed in the memory AND NOT IN DATABASE.
+
+
+
+Use IEnumerable:
+In memory data, Complex C# logic and small collections
+
+AsQueryable: converts it to IQueryable
+IQueryable<T> represents a query that is not executed immediately but instead 
+translated and executed by and external datasource (like database)
+IQueryable builds query---->sends it to db---->db will execute it.
+It will be used when LINQ queries are executed outsude the application, typically in the database.
+
+for eg:
+IQueryable<Employee> query=db.Employees.Where(e=>e.Age>30);
+foreach---then output
+IQueryable: use when:
+Large Data and DataBase Filtering, sorting and paging is required.
+
+
+
+
+
+//select * from employees where age>30 (in the datbase)
+
