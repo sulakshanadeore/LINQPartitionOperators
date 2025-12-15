@@ -37,9 +37,18 @@ foreach---then output
 IQueryable: use when:
 Large Data and DataBase Filtering, sorting and paging is required.
 
-
-
-
-
 //select * from employees where age>30 (in the datbase)
+-----------------------------------------------------------------
+
+ElementOperators:
+they return single elements from a sequence of collection
+1)First()
+2)FirstOrDefault()
+3)Last()
+4)LastOrDefault()
+5)Single()
+6)SingleOrDefault()
+7)ElementAt()
+8)ElementAtOrDefault()
+9)DefaultIfEmpty()
 

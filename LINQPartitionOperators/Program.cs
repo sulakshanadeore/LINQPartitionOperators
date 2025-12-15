@@ -96,21 +96,103 @@ internal class Program
         //    Console.WriteLine(item.Name + "|" +   item.City + "|" + item.Marks  ) ;    
         //}
 
+        //ConversionOperatorsDemo();
 
-
-
-        Student[] students = new Student[]
+        List<Student> studentList = new List<Student>
         {
+            new Student {RollNo=1,Name="Jack" ,Marks=76,City="Pune"} ,
+            new Student {RollNo=3, Name="Mike" ,Marks=97,City= "Pune"} ,
+            new Student {RollNo=4, Name="Jim" ,Marks=55, City = "Mumbai"} ,
+            new Student {RollNo=5,Name="Sam" ,Marks=69,City="Kochi" } ,
+            new Student {RollNo=6,Name="Parikshit" ,Marks=69,City="Kochi" } ,
+            new Student {RollNo=7,Name="Raj" ,Marks=45,City="Kochi" } ,
+        };
+
+      //  var emptylist=new List<Student>();
+        var result = studentList.DefaultIfEmpty(new Student {Name="No Data" });
+
+        var data=studentList.FirstOrDefault(s=>s.RollNo==10);
+
+        if (data != null)
+        {
+            Console.WriteLine(data.Name);
+        }
+        else
+        {
+            foreach (var item in result)
+            {
+                Console.WriteLine(item.Name);
+
+            }
+
+        }
+
+
+
+        //int i = 2;
+        //var stud = studentList.ElementAtOrDefault(i);
+
+        //Console.WriteLine(stud==null? $"No index {i} found" : stud.Name);
+        //var stud = studentList.ElementAt(1);
+        //Console.WriteLine(stud.Name);
+
+        //var stud = studentList.SingleOrDefault(e => e.RollNo == 2);
+        //Console.WriteLine(stud == null ? "the default value will be null" : stud.Marks);
+
+
+        //var firstStud=studentList.First();
+        //Console.WriteLine(firstStud.Name);
+
+        //var laststud = studentList.Last();
+        //Console.WriteLine(laststud.Name);
+
+
+        //var stud = studentList.FirstOrDefault(e => e.Name=="Jim");
+        //Console.WriteLine(stud==null?"the default value will be null":stud.Marks);
+
+        //var stud = studentList.LastOrDefault(e => e.Marks >=69);
+        ////Console.WriteLine(stud == null ? "the default value will be null" : stud.Name);
+
+        // stud = studentList.Single(r => r.RollNo == 1);
+        //Console.WriteLine(stud.Name);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+    private static void ConversionOperatorsDemo()
+    {
+        Student[] students = new Student[]
+                {
             new Student {Name="Jack" ,Marks=76,City="Pune"} ,
             new Student { Name="Mike" ,Marks=97,City= "Pune"} ,
             new Student { Name="Jim" ,Marks=55, City = "Mumbai"} ,
             new Student {Name="Sam" ,Marks=69,City="Kochi" } ,
             new Student {Name="Raj" ,Marks=45,City="Kochi" } ,
-        };
+                };
 
-        var list=students.Where(s=>s.City=="Kochi").ToList();
+        var list = students.Where(s => s.City == "Kochi").ToList();
 
-       List<Student> studentList = new List<Student>
+        List<Student> studentList = new List<Student>
         {
             new Student {Name="Jack" ,Marks=76,City="Pune"} ,
             new Student { Name="Mike" ,Marks=97,City= "Pune"} ,
@@ -120,7 +202,7 @@ internal class Program
         };
 
         var arr = students.Select(e => e.Name).ToArray();
-       
+
         studentList = new List<Student>
         {
             new Student {RollNo=1,Name="Jack" ,Marks=76,City="Pune"} ,
@@ -130,7 +212,7 @@ internal class Program
              new Student {RollNo=5,Name="Raj" ,Marks=45,City="Kochi" } ,
         };
 
-        var dict = studentList.ToDictionary(s=>s.RollNo,s=>s.Name);
+        var dict = studentList.ToDictionary(s => s.RollNo, s => s.Name);
         Console.WriteLine("Dictionary print");
         foreach (var s in dict)
         {
@@ -156,13 +238,13 @@ internal class Program
             new Student {Name="Raj" ,Marks=45,City="Kochi" } ,
         };
         ArrayList studData = new ArrayList();
-        studData=(ArrayList)studentsArray.Cast<Student>();
+        studData = (ArrayList)studentsArray.Cast<Student>();
         studData.Add(1);//It can takes incompatible types
                         //Not safe, so use OfType
 
-        var studs=studData.OfType<Student>(); 
+        var studs = studData.OfType<Student>();
 
-        List<Student> studentsData=studs.ToList();
+        List<Student> studentsData = studs.ToList();
         studentsData.Add(new Student { RollNo = 7, Name = "ABC" });
         //Safer than Cast, Skips the Incompatible types
 
@@ -174,10 +256,5 @@ internal class Program
 
 
         var resultdata2 = resultdata.AsQueryable();
-
-
-
-
-
     }
 }
